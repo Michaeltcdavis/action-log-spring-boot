@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping(path = "/users")
 public class UserController {
@@ -19,6 +21,7 @@ public class UserController {
         User n = new User();
         n.setUserName(name);
         n.setEmail(email);
+        n.setCreatedDate(new Date());
         users.save(n);
         return "Saved";
     }
