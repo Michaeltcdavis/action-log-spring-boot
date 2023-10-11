@@ -2,10 +2,14 @@ package com.davcott.actionLog.project;
 
 import com.davcott.actionLog.user.User;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Project {
 
@@ -30,35 +34,4 @@ public class Project {
     @Temporal(TemporalType.DATE)
     private Date createdDate;
 
-    public int getId() {
-        return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-}
