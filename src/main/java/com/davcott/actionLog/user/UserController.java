@@ -13,31 +13,32 @@ import java.util.Date;
 public class UserController {
 
     @Autowired
-    private UserRepository users;
+    private UserService userService;
 
     @PostMapping(path = "/")
     public ResponseEntity<String> addUser(
             @RequestParam String name,
             @RequestParam String email
         ) {
-        User n = new User();
-        n.setUserName(name);
-        n.setEmail(email);
-        n.setCreatedDate(new Date());
-        users.save(n);
+        userService.addUser(name, email);
         return ResponseEntity.ok("User saved successfully.");
     }
 
     @GetMapping(path = "/")
     public ResponseEntity<Iterable<User>>  getAllUsers() {
-        return ResponseEntity.ok(users.findAll());
+
+        return ResponseEntity.ok(userService.allUsers());
+    }
+
+    @GetMapping(path = "{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") int id) {
+        User u = userService.getUser(id);
+        return ResponseEntity.ok(u);
     }
 
     @DeleteMapping(path = "{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") int id) {
-        User d = users.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("user not found with id: " + id));
-        users.deleteById(id);
+        userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully.");
     }
 
