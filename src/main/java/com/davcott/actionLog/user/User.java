@@ -3,6 +3,7 @@ package com.davcott.actionLog.user;
 import com.davcott.actionLog.project.Project;
 import com.davcott.actionLog.task.Task;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,9 @@ public class User {
     @ManyToMany
     private List<Project> memberOfProjects; //need setter, getter
 
+    @Column(name="created_date", nullable = false, updatable = false)
     @Temporal(TemporalType.DATE)
+    @CreatedDate
     private Date createdDate;
 
     @OneToMany(mappedBy = "owner")
@@ -32,6 +35,11 @@ public class User {
 
     @OneToMany(mappedBy = "creator")
     private List<Task> tasksCreated;
+
+    @Override
+    public String toString() {
+        return String.format("customer [id=%d, username='%s', email='%s']", id, userName, email);
+    }
 
     public int getId() {
         return id;
