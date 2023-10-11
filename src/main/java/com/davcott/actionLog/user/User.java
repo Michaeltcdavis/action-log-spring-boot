@@ -3,11 +3,15 @@ package com.davcott.actionLog.user;
 import com.davcott.actionLog.project.Project;
 import com.davcott.actionLog.task.Task;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class User {
 
@@ -41,67 +45,4 @@ public class User {
         return String.format("customer [id=%d, username='%s', email='%s']", id, userName, email);
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public List<Project> getOwnedProjects() {
-        return ownedProjects;
-    }
-
-    public void setOwnedProjects(List<Project> ownedProjects) {
-        this.ownedProjects = ownedProjects;
-    }
-
-    public List<Project> getMemberOfProjects() {
-        return memberOfProjects;
-    }
-
-    public void setMemberOfProjects(List<Project> memberOfProjects) {
-        this.memberOfProjects = memberOfProjects;
-    }
-
-    public List<Task> getTasksOwned() {
-        return tasksOwned;
-    }
-
-    public void setTasksOwned(List<Task> tasksOwned) {
-        this.tasksOwned = tasksOwned;
-    }
-
-    public List<Task> getTasksCreated() {
-        return tasksCreated;
-    }
-
-    public void setTasksCreated(List<Task> tasksCreated) {
-        this.tasksCreated = tasksCreated;
-    }
 }
